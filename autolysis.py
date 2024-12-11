@@ -16,10 +16,11 @@ import seaborn as sns
 import matplotlib.pyplot as plt
 from PIL import Image
 from google.colab import files
+from google.colab import userdata
 
 #AI Proxy token
-# api_token = os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables, which is not set.
-api_token = AIPROXY_TOKEN  # Directly use the global variable AIPROXY_TOKEN
+api_token = userdata.get('AIPROXY_TOKEN')
+os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables, which is not set.
 if not api_token:
     raise ValueError("AIPROXY_TOKEN environment variable is not set.")
 
