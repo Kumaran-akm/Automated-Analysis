@@ -19,8 +19,8 @@ from google.colab import files
 from google.colab import userdata
 
 #AI Proxy token
-api_token = userdata.get('AIPROXY_TOKEN')
-os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables, which is not set.
+api_token = userdata.get('AIPROXY_TOKEN') #This is to run in colab 
+api_token = os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables.
 if not api_token:
     raise ValueError("AIPROXY_TOKEN environment variable is not set.")
 
