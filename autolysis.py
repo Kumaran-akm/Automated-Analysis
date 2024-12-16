@@ -10,19 +10,21 @@
 # ///
 
 import os
-import sys
+import requests
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-import httpx
-import chardet
-from sklearn.cluster import KMeans
-from sklearn.impute import SimpleImputer
+from PIL import Image
 
-# AI PROXY TOKEN 
-API_URL = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
-AIPROXY_TOKEN = os.getenv('AIPROXY_TOKEN')  # Fetch token from environment variable
+#AI Proxy token
+api_token = os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables.
+if not api_token:
+    raise ValueError("AIPROXY_TOKEN environment variable is not set.")
 
+# Define the AI Proxy API URL (replace this with the correct endpoint)
+api_url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"  # Updated to AI Proxy URL
+
+# Function to send data to AI Proxy for analysis
 def analyze_with_proxy(data_summary):
     headers = {
         "Authorization": f"Bearer {api_token}",
