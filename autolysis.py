@@ -10,24 +10,19 @@
 # ///
 
 import os
-import requests
+import sys
 import pandas as pd
 import seaborn as sns
 import matplotlib.pyplot as plt
-from PIL import Image
-from google.colab import files
-from google.colab import userdata
+import httpx
+import chardet
+from sklearn.cluster import KMeans
+from sklearn.impute import SimpleImputer
 
-#AI Proxy token
-api_token = userdata.get('AIPROXY_TOKEN') #This is to run in colab 
-api_token = os.getenv("AIPROXY_TOKEN")  # This line tries to get the token from environment variables.
-if not api_token:
-    raise ValueError("AIPROXY_TOKEN environment variable is not set.")
+# AI PROXY TOKEN 
+API_URL = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"
+AIPROXY_TOKEN = os.getenv('AIPROXY_TOKEN')  # Fetch token from environment variable
 
-# Define the AI Proxy API URL (replace this with the correct endpoint)
-api_url = "https://aiproxy.sanand.workers.dev/openai/v1/chat/completions"  # Updated to AI Proxy URL
-
-# Function to send data to AI Proxy for analysis
 def analyze_with_proxy(data_summary):
     headers = {
         "Authorization": f"Bearer {api_token}",
@@ -206,6 +201,3 @@ def main():
 
 if __name__ == "__main__":
     main()
-
-
-
